@@ -74,7 +74,7 @@ The manipulations identify causal consequences within the specified fitness func
 
 ## Data availability and preservation
 
-All data required to reproduce the manuscript’s statistics and figures are included here. The public repository is https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion. The exact eLife submission version should be tagged as `v1.0.0` and archived with Zenodo; record the release URL, full commit identifier, and Zenodo DOI in the manuscript’s Data Availability Statement.
+All data required to reproduce the manuscript’s statistics and figures are included here. The public repository is https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion. Version `v1.0.0` identifies the repository snapshot associated with the current manuscript and will be archived with Zenodo; record the release URL, full commit identifier, and Zenodo DOI in the manuscript’s Data Availability Statement.
 
 ## Contact
 

@@ -94,11 +94,11 @@ All headline analyses use master seed 42. Replicate-specific seeds are recorded 
 
 ## Versioned public release
 
-For the public eLife release:
+For a versioned public release:
 
-1. synchronize these corrected root-layout files with https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion;
-2. commit the files and tag the exact submitted version as `v1.0.0`;
+1. confirm that https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion contains the corrected root-layout files;
+2. commit the files and tag the version associated with the current manuscript as `v1.0.0`;
 3. create a GitHub release from that tag;
 4. connect the repository to Zenodo and archive the release;
-5. add the GitHub release URL, full commit identifier, and Zenodo DOI to the article and cover letter; and
-6. retain the immutable repository ZIP supplied in the eLife package as a reviewer-accessible backup.
+5. add the GitHub release URL, full commit identifier, and Zenodo DOI to the manuscript’s Data Availability Statement; and
+6. retain the immutable repository ZIP as a reviewer-accessible backup.
