@@ -1,0 +1,10 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+figures/generated/
+figures/alternative_models/
+results/
+equilibrium_statistics.csv
