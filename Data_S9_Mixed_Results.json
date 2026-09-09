@@ -1,0 +1,171 @@
+{
+  "model": "Care-Gated Grey Ceiling (Simulation 3)",
+  "version": "2.0",
+  "condition": "mixed",
+  "reference": "Grossmann, T. (tg3ny@virginia.edu)",
+  "relationship_to_prior_work": {
+    "experiment_1": "Grossmann (2026) Childhood-First Simulation 1",
+    "CBH": "Muthukrishna et al. (2018) PLoS Comput. Biol.",
+    "grey_ceiling": "Isler & van Schaik (2012) Curr. Anthropol.",
+    "cooperative_breeding": "Hrdy (2009) Mothers and Others",
+    "note": "Phases 1-2 reproduce Simulation 1 exactly. Phase 3 imposes care-gated and care-independent energetic ceiling lifts."
+  },
+  "parameters": {
+    "N": 1000,
+    "T_phase1": 10000,
+    "T_phase2": 100000,
+    "T_phase3": 200000,
+    "alpha": 0.1,
+    "gamma": 0.001,
+    "beta": 0.12,
+    "k_ceiling": 0.5,
+    "lambda_": 0.5,
+    "learning_exponent": 1.15,
+    "asocial_rate": 0.1,
+    "social_rate": 0.3,
+    "social_exponent": 1.8,
+    "mu": 0.01,
+    "sigma_mut": 0.1,
+    "L_max": 20.0,
+    "care_lift": 80.0,
+    "exogenous_lift": 20.0,
+    "ceiling_ramp": 0,
+    "alpha_level": 0.005,
+    "Subcare_control": 0.0,
+    "Subcare_treatment": 0.6,
+    "Bmax_initial": 50.0
+  },
+  "effective_ceilings": {
+    "control": 70.0,
+    "treatment": 118.0
+  },
+  "n_replicates_per_group": 100,
+  "master_seed": 42,
+  "runtime_minutes": 44.83724660078685,
+  "analysis": {
+    "n_control": 100,
+    "n_treatment": 100,
+    "ctrl_B_max_phase3": 70.0,
+    "treat_B_max_phase3": 118.0,
+    "phase2_ctrl_B": {
+      "mean": 41.90735901420609,
+      "std": 1.5900029442343797,
+      "se": 0.15900029442343797
+    },
+    "phase2_ctrl_L": {
+      "mean": 6.413643811733767,
+      "std": 1.133845718719597,
+      "se": 0.11338457187195969
+    },
+    "phase2_ctrl_S": {
+      "mean": 0.14337548926516108,
+      "std": 0.12018225493961161,
+      "se": 0.01201822549396116
+    },
+    "phase2_treat_B": {
+      "mean": 41.52747997393291,
+      "std": 1.978982288569175,
+      "se": 0.1978982288569175
+    },
+    "phase2_treat_L": {
+      "mean": 8.501205106153849,
+      "std": 2.1492028734713626,
+      "se": 0.21492028734713625
+    },
+    "phase2_treat_S": {
+      "mean": 0.21775449803296357,
+      "std": 0.14712587909472002,
+      "se": 0.014712587909472002
+    },
+    "phase2_L_extension_pct": 32.548756302944156,
+    "phase2_B_change_pct": -0.9064733479014977,
+    "phase2_S_enhancement_pct": 51.87707407243415,
+    "phase3_ctrl_B": {
+      "mean": 56.257642249099916,
+      "std": 5.270945598815403,
+      "se": 0.5270945598815403
+    },
+    "phase3_ctrl_L": {
+      "mean": 7.7991583459392935,
+      "std": 1.9559827760601731,
+      "se": 0.1955982776060173
+    },
+    "phase3_ctrl_S": {
+      "mean": 0.2256965421533258,
+      "std": 0.17289403575556417,
+      "se": 0.017289403575556417
+    },
+    "phase3_ctrl_K": {
+      "mean": 33.70409692116117,
+      "std": 3.1772366044889626,
+      "se": 0.3177236604488963
+    },
+    "phase3_treat_B": {
+      "mean": 55.659380619407884,
+      "std": 10.096978755238561,
+      "se": 1.0096978755238561
+    },
+    "phase3_treat_L": {
+      "mean": 9.870551905766447,
+      "std": 3.1775176220072003,
+      "se": 0.31775176220072004
+    },
+    "phase3_treat_S": {
+      "mean": 0.26247001822502114,
+      "std": 0.19257817749300613,
+      "se": 0.01925781774930061
+    },
+    "phase3_treat_K": {
+      "mean": 33.346787138561425,
+      "std": 6.0779958392502555,
+      "se": 0.6077995839250255
+    },
+    "ctrl_delta_B": {
+      "mean": 14.350283234893828,
+      "std": 5.145853017207522,
+      "se": 0.5145853017207522
+    },
+    "treat_delta_B": {
+      "mean": 14.131900645474982,
+      "std": 9.905060012408986,
+      "se": 0.9905060012408986
+    },
+    "differential_expansion": -0.21838258941884625,
+    "dB_t_statistic": -0.19466773946686589,
+    "dB_p_value": 0.8458526640924088,
+    "dB_cohen_d": -0.027668867670442097,
+    "dB_significant": false,
+    "p3B_t_statistic": -0.5226193019817232,
+    "p3B_p_value": 0.6018234785692406,
+    "p3B_cohen_d": -0.07428187304251499,
+    "ctrl_expanded_p": 1.7114694154333987e-48,
+    "treat_expanded_p": 1.3085579171068753e-25,
+    "treat_expanded": true,
+    "ctrl_delta_L": {
+      "mean": 1.385514534205528,
+      "std": 1.9401701897148376,
+      "se": 0.19401701897148377
+    },
+    "treat_delta_L": {
+      "mean": 1.3693467996125992,
+      "std": 2.741976198635802,
+      "se": 0.2741976198635802
+    },
+    "p3L_t_statistic": 5.523594781463576,
+    "p3L_p_value": 1.0360986557087327e-07,
+    "p3K_t_statistic": -0.5183741256239479,
+    "p3K_p_value": 0.6047760585277772,
+    "grey_ceiling_hypothesis_supported": false
+  },
+  "manuscript_targets": [
+    "Table 3",
+    "Fig. 4"
+  ],
+  "experiment": "Simulation 3 (route-comparison condition)",
+  "canonical_role": "experiment_3_primary",
+  "note": "Both groups receive an exogenous care-independent ceiling lift; the treatment group also receives the care-gated lift.",
+  "reported_metrics": {
+    "within_group_change": "delta_B, delta_L (Phase 2 to Phase 3)",
+    "between_group_endpoint": "phase3_B, phase3_L (treatment vs control at Phase 3 end)"
+  }
+}

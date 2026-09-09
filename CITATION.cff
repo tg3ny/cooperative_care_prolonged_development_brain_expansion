@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: If you use this repository, please cite the associated manuscript and this release.
+title: Cooperative care and childhood first simulation
+type: software
+authors:
+  - family-names: Grossmann
+    given-names: Tobias
+    affiliation: University of Virginia
+    email: tg3ny@virginia.edu
+version: 1.0.0
+date-released: 2026-09-08
+license: MIT
+repository-code: https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion
+keywords:
+  - cooperative breeding
+  - childhood
+  - brain evolution
+  - social learning
+  - evolutionary simulation

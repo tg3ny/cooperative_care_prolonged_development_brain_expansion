@@ -1,0 +1,165 @@
+{
+  "model": "Care-Gated Grey Ceiling (Simulation 2, gradual-ramp analysis)",
+  "version": "2.0",
+  "condition": "pure",
+  "reference": "Grossmann, T. (tg3ny@virginia.edu)",
+  "relationship_to_prior_work": {
+    "experiment_1": "Grossmann (2026) Childhood-First Simulation 1",
+    "CBH": "Muthukrishna et al. (2018) PLoS Comput. Biol.",
+    "grey_ceiling": "Isler & van Schaik (2012) Curr. Anthropol.",
+    "cooperative_breeding": "Hrdy (2009) Mothers and Others",
+    "note": "Phases 1-2 reproduce Simulation 1 exactly. Phase 3 imposes a gradual care-gated energetic ceiling lift."
+  },
+  "parameters": {
+    "N": 1000,
+    "T_phase1": 10000,
+    "T_phase2": 100000,
+    "T_phase3": 200000,
+    "alpha": 0.1,
+    "gamma": 0.001,
+    "beta": 0.12,
+    "k_ceiling": 0.5,
+    "lambda_": 0.5,
+    "learning_exponent": 1.15,
+    "asocial_rate": 0.1,
+    "social_rate": 0.3,
+    "social_exponent": 1.8,
+    "mu": 0.01,
+    "sigma_mut": 0.1,
+    "L_max": 20.0,
+    "care_lift": 100.0,
+    "exogenous_lift": 0.0,
+    "ceiling_ramp": 50000,
+    "alpha_level": 0.005,
+    "Subcare_control": 0.0,
+    "Subcare_treatment": 0.6,
+    "Bmax_initial": 50.0
+  },
+  "effective_ceilings": {
+    "control": 50.0,
+    "treatment": 110.0
+  },
+  "n_replicates_per_group": 100,
+  "master_seed": 42,
+  "runtime_minutes": 24.053054197629294,
+  "analysis": {
+    "n_control": 100,
+    "n_treatment": 100,
+    "ctrl_B_max_phase3": 50.0,
+    "treat_B_max_phase3": 110.0,
+    "phase2_ctrl_B": {
+      "mean": 41.90735901420609,
+      "std": 1.5900029442343797,
+      "se": 0.15900029442343797
+    },
+    "phase2_ctrl_L": {
+      "mean": 6.413643811733767,
+      "std": 1.133845718719597,
+      "se": 0.11338457187195969
+    },
+    "phase2_ctrl_S": {
+      "mean": 0.14337548926516108,
+      "std": 0.12018225493961161,
+      "se": 0.01201822549396116
+    },
+    "phase2_treat_B": {
+      "mean": 41.52747997393291,
+      "std": 1.978982288569175,
+      "se": 0.1978982288569175
+    },
+    "phase2_treat_L": {
+      "mean": 8.501205106153849,
+      "std": 2.1492028734713626,
+      "se": 0.21492028734713625
+    },
+    "phase2_treat_S": {
+      "mean": 0.21775449803296357,
+      "std": 0.14712587909472002,
+      "se": 0.014712587909472002
+    },
+    "phase2_L_extension_pct": 32.548756302944156,
+    "phase2_B_change_pct": -0.9064733479014977,
+    "phase2_S_enhancement_pct": 51.87707407243415,
+    "phase3_ctrl_B": {
+      "mean": 41.93423967559346,
+      "std": 1.644289869048523,
+      "se": 0.1644289869048523
+    },
+    "phase3_ctrl_L": {
+      "mean": 6.467147516615708,
+      "std": 0.9778143799197262,
+      "se": 0.09778143799197261
+    },
+    "phase3_ctrl_S": {
+      "mean": 0.14223538849811967,
+      "std": 0.11386673665553107,
+      "se": 0.011386673665553107
+    },
+    "phase3_ctrl_K": {
+      "mean": 25.123756408786917,
+      "std": 0.994388923872024,
+      "se": 0.09943889238720241
+    },
+    "phase3_treat_B": {
+      "mean": 54.61104773700387,
+      "std": 10.70271376988455,
+      "se": 1.070271376988455
+    },
+    "phase3_treat_L": {
+      "mean": 9.928510568190642,
+      "std": 3.451541540283507,
+      "se": 0.3451541540283507
+    },
+    "phase3_treat_S": {
+      "mean": 0.2850885651735939,
+      "std": 0.20804156708947416,
+      "se": 0.020804156708947415
+    },
+    "phase3_treat_K": {
+      "mean": 32.67776430583555,
+      "std": 6.381159095574629,
+      "se": 0.6381159095574629
+    },
+    "ctrl_delta_B": {
+      "mean": 0.026880661387374546,
+      "std": 2.0361124364797076,
+      "se": 0.20361124364797076
+    },
+    "treat_delta_B": {
+      "mean": 13.083567763070954,
+      "std": 10.57001215294144,
+      "se": 1.057001215294144
+    },
+    "differential_expansion": 13.056687101683579,
+    "dB_t_statistic": 12.06878035739135,
+    "dB_p_value": 1.6990488241466804e-25,
+    "dB_cohen_d": 1.7153817451562372,
+    "dB_significant": true,
+    "p3B_t_statistic": 11.648441048273954,
+    "p3B_p_value": 3.196811869257171e-24,
+    "p3B_cohen_d": 1.6556373172787366,
+    "ctrl_expanded_p": 0.8957588643575265,
+    "treat_expanded_p": 1.0879929751009078e-21,
+    "treat_expanded": true,
+    "ctrl_delta_L": {
+      "mean": 0.05350370488194099,
+      "std": 1.3732665248080302,
+      "se": 0.13732665248080303
+    },
+    "treat_delta_L": {
+      "mean": 1.4273054620367933,
+      "std": 2.891076486432843,
+      "se": 0.2891076486432843
+    },
+    "p3L_t_statistic": 9.600369837578928,
+    "p3L_p_value": 3.674794428292646e-18,
+    "p3K_t_statistic": 11.638187387984079,
+    "p3K_p_value": 3.4333289979544944e-24,
+    "grey_ceiling_hypothesis_supported": true
+  },
+  "manuscript_targets": [
+    "Fig. S6"
+  ],
+  "canonical_role": "robustness_gradual_ramp",
+  "note": "Robustness analysis with linearly ramped ceiling over 50,000 generations."
+}
