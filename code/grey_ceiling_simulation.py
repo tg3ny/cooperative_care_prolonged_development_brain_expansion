@@ -2,7 +2,7 @@
 Canonical script for Simulations 2 and 3 (care-gated grey-ceiling analyses).
 
 Produces the authoritative outputs for Tables 2-3, Figures 3-4, and the
-gradual-ramp robustness analysis (Figure S6).
+gradual-ramp robustness analysis (Figure 3-figure supplement 1).
 
 Outputs:
   Simulation 2 (care-gated ceiling condition):
@@ -15,7 +15,7 @@ Outputs:
     Data_S9_Mixed_Results.json — full analysis with parameters
 
   Robustness:
-    Data_S10_Ramp_Results.json — gradual ceiling ramp (for Fig. S6)
+    Data_S10_Ramp_Results.json — gradual ceiling ramp (for Figure 3-figure supplement 1)
 
 Terminology: Phase 1 (baseline), Phase 2 (care divergence), Phase 3 (ceiling lift).
 Master seed: 42. All results are fully deterministic.

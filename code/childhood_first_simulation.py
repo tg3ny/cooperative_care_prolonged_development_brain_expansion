@@ -6,7 +6,7 @@ SI summaries (Tables S2-S3, Figures S1-S3, S5).
 
 Outputs:
   Data_S1_Summary.csv     — Simulation 1 endpoint values (canonical for Table 1)
-  Data_S2_Sensitivity.csv — Sensitivity analysis (canonical for Table S3, Fig. S5)
+  Data_S2_Sensitivity.csv — Sensitivity analysis (canonical for Appendix 1-table 3 and Figure 1-figure supplement 5)
   Data_S3_Trajectories.csv — Full trait trajectories (canonical for Figs. 1, 2, S1, S3)
 
 Terminology: Phase 1 (baseline, gen 0-10k), Phase 2 (care divergence, gen 10k-100k).
@@ -103,7 +103,7 @@ USAGE
     # Full simulation (100 replicates per group)
     python childhood_first_simulation.py -n 100 -o ./full_results
 
-    # SENSITIVITY ANALYSIS (Figure S4)
+    # SENSITIVITY ANALYSIS (Figure 1-figure supplement 5)
     python childhood_first_simulation.py --sensitivity -o ./results -j -1
 
 OUTPUT
@@ -567,14 +567,14 @@ def run_sensitivity_analysis(args, base_params):
     Performs a grid search over social_rate and social_exponent to test
     the robustness of the decoupling effect.
     
-    Generates data for Figure S4 (Heatmap).
+    Generates data for Figure 1-figure supplement 5 (heatmap). 20 replicates per cell per condition.
     """
     print("\n" + "="*70)
     print(" RUNNING SENSITIVITY ANALYSIS (GRID SEARCH)")
     print("="*70)
     
     # Define the parameter space
-    # We test a range around your chosen values (0.30, 1.8)
+    # Grid centered on the default values (r = 0.30, e = 1.8)
     rates = np.linspace(0.10, 0.50, 9)      # 0.10, 0.15, ..., 0.50
     exponents = np.linspace(1.0, 2.6, 9)    # 1.0, 1.2, ..., 2.6
     
@@ -681,8 +681,8 @@ def run_sensitivity_analysis(args, base_params):
         # Highlight the decoupling zone
         # We can overlay stippling or a contour for 'is_decoupled'
         # For now, just saving the heatmap
-        plt.savefig(f"{args.output}/FigS4_sensitivity.pdf")
-        print(f"Preliminary plot saved to: {args.output}/FigS4_sensitivity.pdf")
+        plt.savefig(f"{args.output}/sensitivity_heatmap_preliminary.pdf")
+        print(f"Preliminary plot saved to: {args.output}/sensitivity_heatmap_preliminary.pdf")
         
     except ImportError:
         print("Matplotlib/Seaborn not found. Skipping plot generation.")
@@ -724,9 +724,9 @@ Examples:
     parser.add_argument('--seed', type=int, default=42,
                         help='Master random seed (default: 42)')
     
-    # NEW FLAG FOR SENSITIVITY ANALYSIS
+    # Sensitivity-analysis flag
     parser.add_argument('--sensitivity', action='store_true',
-                        help='Run parameter sweep for Figure S4 instead of a single simulation')
+                        help='Run the parameter sweep for Figure 1-figure supplement 5 instead of a single simulation')
     
     args = parser.parse_args()
     

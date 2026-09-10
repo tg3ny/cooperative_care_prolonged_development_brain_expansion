@@ -1,7 +1,7 @@
 """
 Auxiliary equilibrium diagnostic script.
 
-Supports equilibrium convergence checks discussed in the SI Appendix.
+Supports the convergence diagnostics summarized in Appendix 1 (note on time scale and convergence); output: Data_S5_Equilibrium_Statistics.csv.
 Not a primary source of manuscript headline statistics.
 
 Verifies that trait trajectories have converged to equilibrium by the

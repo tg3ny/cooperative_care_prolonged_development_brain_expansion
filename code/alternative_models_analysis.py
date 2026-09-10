@@ -1,13 +1,26 @@
 """
-Canonical SI analysis script for alternative model specifications.
+Canonical analysis script for alternative model specifications.
 
-Produces outputs used for Figure S4 and the robustness claims in the SI Appendix
-regarding the necessity of convex (superlinear) return structures for developmental
-decoupling.
+Produces the outputs used for Figure 1-figure supplement 4 and the robustness
+discussion in Appendix 1 regarding convex (superlinear) return structures and
+developmental decoupling.
 
 Tests five model variants: superlinear (default), linear, saturating, weak B-coupling,
-and null. Only the superlinear specification produces true decoupling (childhood
-extension without brain change).
+and null. In the deposited results, the superlinear specification and its weak
+B-coupling variant meet the decoupling criterion (childhood extension >= 10% with
+|brain-size change| < 2% and TOST equivalence); the linear, saturating, and null
+specifications do not.
+
+This analysis is an independent set of replicates with its own random seeds. The
+superlinear specification is therefore a re-run of the Simulation 1 model under
+different seeds, and its point estimates differ slightly from Simulation 1
+(Data_S1_Summary.csv), as noted in the manuscript.
+
+Random seeds: seeds are derived deterministically from the model name with
+hashlib (see run_model_variant), so reruns are reproducible. The deposited
+Data_S4_Alternative_Models.csv was generated with an earlier version of this script
+that derived seeds from Python's per-process string hash; rerunning therefore
+reproduces the deposited results statistically but not bit for bit.
 
 Deposited output: Data_S4_Alternative_Models.csv in the repository root.
 
@@ -40,10 +53,11 @@ alternative specifications of the social benefit function:
    - Scrambled payoff unrelated to L; verifies effect is specifically
      tied to care-contingent L-dependent payoffs
 
-EXPECTED RESULTS
-----------------
-- Models 1-4 should show decoupling (ΔL ≥ 10%, |ΔB| < 2%) if robust
-- Model 5 (null) should show NO systematic ΔL difference
+DEPOSITED RESULTS (Data_S4_Alternative_Models.csv, 100 replicates per condition)
+--------------------------------------------------------------------------------
+- Models 1 (superlinear) and 4 (weak B-coupling) meet the decoupling criterion
+- Models 2 (linear) and 3 (saturating) extend childhood but reduce brain size
+- Model 5 (null) extends childhood modestly and fails the equivalence test
 
 USAGE
 -----
@@ -62,6 +76,7 @@ from dataclasses import dataclass
 from typing import Dict, Callable
 import time
 import argparse
+import hashlib
 import json
 
 try:
@@ -405,7 +420,8 @@ def run_model_variant(model_name: str, social_benefit_func: Callable,
         print(f"{'='*60}")
     
     params = SimulationParameters()
-    base_seed = abs(hash(model_name)) % (2**31)
+    # Deterministic, process-independent seed derived from the model name.
+    base_seed = int(hashlib.sha256(model_name.encode('utf-8')).hexdigest(), 16) % (2**31)
     
     # Prepare all jobs
     jobs = []
