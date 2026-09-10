@@ -36,6 +36,7 @@ The verification script checks the manifest, data dimensions, replicate counts, 
 From the repository root:
 
 ```bash
+python code/generate_simulation1_figures.py --data-dir . --output-dir figures/generated
 python code/generate_figures.py --data-dir . --output-dir figures/generated
 python code/visualize_alternative_models.py \
   --input Data_S4_Alternative_Models.csv \
@@ -43,11 +44,11 @@ python code/visualize_alternative_models.py \
 python code/equilibrium_analysis.py
 ```
 
-The first command regenerates Figure 3, Figure 4, and Figure 3—figure supplement 1 from the deposited trajectory and summary files. The Simulation 1 and alternative-model scripts generate the other figures as described in `docs/REPRODUCIBILITY.md`.
+The first command regenerates Figures 1 and 2; the second regenerates Figure 3, Figure 4, and Figure 3—figure supplement 1; the third regenerates Figure 1—figure supplement 4. Figure 1—figure supplements 1, 2, 3, and 5 are produced by `childhood_first_simulation.py` as described in `docs/REPRODUCIBILITY.md`.
 
 ## Full simulation regeneration
 
-The simulations use 100 independent stochastic replicates per group and master seed 42. Full regeneration is computationally intensive:
+The simulations use 100 independent stochastic replicates per group and master seed 42 (the alternative-model analysis derives its seeds from each model name; see `docs/REPRODUCIBILITY.md`). Full regeneration is computationally intensive:
 
 ```bash
 python code/childhood_first_simulation.py -n 100 -j -1 -o results/experiment1 --seed 42
@@ -64,7 +65,7 @@ See `docs/REPRODUCIBILITY.md` for output mappings and the alternative-model work
 |---|---|
 | Simulation 1 | Introducing the cooperative-care context increased childhood duration by 32.5% while brain size remained statistically equivalent under the prespecified ±2% bounds. |
 | Simulation 2 | With an imposed care-gated ceiling lift, mean treatment brain size increased by approximately 34% relative to its Simulation 1 endpoint. |
-| Simulation 3 | Cooperative-care and care-independent energetic conditions reached similar brain sizes but differed in childhood duration. |
+| Simulation 3 | Cooperative-care and care-independent energetic conditions reached similar brain sizes but differed in childhood duration. The cooperative-care trajectories are numerically identical to those of Simulation 2 because the raised ceiling never binds. |
 
 ## Model scope
 
