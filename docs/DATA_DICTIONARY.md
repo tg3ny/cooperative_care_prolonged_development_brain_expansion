@@ -7,12 +7,12 @@ All deposited CSV, compressed CSV, and JSON data files are stored in the reposit
 | File | Rows | Purpose |
 |---|---:|---|
 | `Data_S1_Summary.csv` | 200 | Simulation 1 replicate-level endpoints, 100 control and 100 treatment replicates. |
-| `Data_S2_Sensitivity.csv` | 81 | Parameter sweep across social benefit rate `r` and convexity exponent `e`. |
+| `Data_S2_Sensitivity.csv` | 81 | Parameter sweep across social benefit rate `r` and convexity exponent `e`; each cell averages 20 replicates per condition. |
 | `Data_S3_Trajectories.csv.gz` | 200,000 | Simulation 1 generation-level trajectories. |
-| `Data_S4_Alternative_Models.csv` | 5 | Alternative social-benefit model results. |
+| `Data_S4_Alternative_Models.csv` | 5 | Alternative social-benefit model results (100 replicates per condition per specification; an independent run with its own seeds, so the superlinear row is a re-run of the Simulation 1 model). |
 | `Data_S5_Equilibrium_Statistics.csv` | 8 | Phase-boundary equilibrium diagnostics. |
 | `Data_S6_Pure_Summary.csv` | 200 | Simulation 2 replicate endpoints for the care-gated ceiling condition. |
-| `Data_S7_Mixed_Summary.csv` | 200 | Simulation 3 replicate endpoints for cooperative-care and care-independent energetic routes. |
+| `Data_S7_Mixed_Summary.csv` | 200 | Simulation 3 replicate endpoints for cooperative-care and care-independent energetic routes. The treatment rows are numerically identical to the treatment rows of `Data_S6_Pure_Summary.csv` because the same seeds were used and the raised ceiling (110 or 118) never binds; only the control condition differs (ceiling 70 instead of 50). |
 | `Data_S8_Pure_Results.json` | — | Simulation 2 parameters and analysis results. |
 | `Data_S9_Mixed_Results.json` | — | Simulation 3 parameters and analysis results. |
 | `Data_S10_Ramp_Results.json` | — | Gradual ceiling-lift parameters and analysis results. |
@@ -27,7 +27,7 @@ The two 400,000-row trajectory datasets are divided by condition solely to keep 
 
 - `replicate`: integer replicate identifier within a group, 1–100.
 - `group`: simulation condition, `control` or `treatment`.
-- `seed`: replicate-specific pseudorandom seed derived from master seed 42.
+- `seed`: replicate-specific pseudorandom seed derived from master seed 42 (Simulations 1 to 3 and the ramp analysis). `Data_S4_Alternative_Models.csv` does not record seeds; see `docs/REPRODUCIBILITY.md`.
 - `generation`: simulated generation.
 - `phase`: sequential model phase.
 

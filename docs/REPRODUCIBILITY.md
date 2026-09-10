@@ -27,6 +27,7 @@ On Windows, activate the environment with `.venv\Scripts\activate`.
 ## Regenerate figures from deposited data
 
 ```bash
+python code/generate_simulation1_figures.py --data-dir . --output-dir figures/generated
 python code/generate_figures.py --data-dir . --output-dir figures/generated
 python code/visualize_alternative_models.py \
   --input Data_S4_Alternative_Models.csv \
@@ -34,7 +35,7 @@ python code/visualize_alternative_models.py \
 python code/equilibrium_analysis.py
 ```
 
-`generate_figures.py` reads the instantaneous and gradual ceiling-lift trajectories from separate condition-specific files and concatenates each control/treatment pair automatically. The split keeps every file below GitHub’s browser-upload limit and ensures that Figure 3—figure supplement 1 is regenerated from the gradual-ramp condition.
+`generate_simulation1_figures.py` regenerates Figures 1 and 2 from `Data_S1_Summary.csv` and `Data_S3_Trajectories.csv.gz`. `visualize_alternative_models.py` regenerates Figure 1—figure supplement 4 (`Figure1_figure_supplement4.pdf`); panels A and B are drawn from the model's benefit functions and default parameters, and panel C is read from `Data_S4_Alternative_Models.csv`. `generate_figures.py` reads the instantaneous and gradual ceiling-lift trajectories from separate condition-specific files and concatenates each control/treatment pair automatically. The split keeps every file below GitHub’s browser-upload limit and ensures that Figure 3—figure supplement 1 is regenerated from the gradual-ramp condition.
 
 ## Rerun Simulation 1
 
@@ -84,13 +85,15 @@ Run this command from a dedicated results directory because the script writes it
 ```bash
 mkdir -p results/alternative_models
 cd results/alternative_models
-python ../../code/alternative_models_analysis.py --replicates 20 --jobs -1
+python ../../code/alternative_models_analysis.py --replicates 100 --jobs -1
 cd ../..
 ```
 
+The deposited `Data_S4_Alternative_Models.csv` used 100 replicates per condition per specification. Seeds in the current script are derived deterministically from each model name with `hashlib`; the deposited file was produced by an earlier version that derived seeds from Python's per-process string hash, so a rerun reproduces its results statistically but not bit for bit. The alternative-model analysis is independent of the Simulation 1 run (different seeds), which is why its superlinear row differs slightly from `Data_S1_Summary.csv`.
+
 ## Determinism and computing time
 
-All headline analyses use master seed 42. Replicate-specific seeds are recorded in the summary files. Parallel execution can change completion order but not the deterministic result assigned to a recorded replicate seed. Full regeneration is computationally intensive; checking the deposited outputs and regenerating figures is substantially faster.
+Simulations 1 to 3, the sensitivity sweep, and the gradual-ramp analysis use master seed 42 (the alternative-model analysis uses model-name-derived seeds; see above). Replicate-specific seeds are recorded in the summary files. Parallel execution can change completion order but not the deterministic result assigned to a recorded replicate seed. Full regeneration is computationally intensive; checking the deposited outputs and regenerating figures is substantially faster.
 
 ## Versioned public release
 
