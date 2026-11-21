@@ -32,10 +32,20 @@ python code/generate_figures.py --data-dir . --output-dir figures/generated
 python code/visualize_alternative_models.py \
   --input Data_S4_Alternative_Models.csv \
   --output figures/alternative_models
+python code/generate_supplementary_figures.py --data-dir . --output-dir figures/generated
+python code/make_figure1_model_diagram.py
 python code/equilibrium_analysis.py
 ```
 
-`generate_simulation1_figures.py` regenerates Figures 1 and 2 from `Data_S1_Summary.csv` and `Data_S3_Trajectories.csv.gz`. `visualize_alternative_models.py` regenerates Figure 1—figure supplement 4 (`Figure1_figure_supplement4.pdf`); panels A and B are drawn from the model's benefit functions and default parameters, and panel C is read from `Data_S4_Alternative_Models.csv`. `generate_figures.py` reads the instantaneous and gradual ceiling-lift trajectories from separate condition-specific files and concatenates each control/treatment pair automatically. The split keeps every file below GitHub’s browser-upload limit and ensures that Figure 3—figure supplement 1 is regenerated from the gradual-ramp condition.
+`generate_simulation1_figures.py` regenerates Figures 1 and 2 from `Data_S1_Summary.csv` and `Data_S3_Trajectories.csv.gz`. `visualize_alternative_models.py` regenerates Figure 1—figure supplement 4 (`Figure1_figure_supplement4.pdf`); panels A and B are drawn from the model's benefit functions and default parameters, and panel C is read from `Data_S4_Alternative_Models.csv`. `generate_figures.py` reads the instantaneous and gradual ceiling-lift trajectories from separate condition-specific files and concatenates each control/treatment pair automatically. The split keeps every file below GitHub’s browser-upload limit and ensures that Figure 3—figure supplement 1 is regenerated from the gradual-ramp condition. `generate_supplementary_figures.py` redraws Figure 1—figure supplements 1, 2, 3, and 5 (Figures S1, S2, S3, and S5 of the revised manuscript) from `Data_S3_Trajectories.csv.gz`, `Data_S1_Summary.csv`, and `Data_S2_Sensitivity.csv`; Figure S3 shows replicates 1 to 20 of each condition. `equilibrium_analysis.py` prints auxiliary convergence diagnostics that are not reported in the article.
+
+## Recompute the reported statistics
+
+```bash
+python code/reported_statistics.py
+```
+
+The script reads only deposited files and prints the statistics reported in the article and its Supporting Information in the order in which they appear. Its conventions are those of the article: sample standard deviations, Cohen's d with the pooled sample SD, two-sided t tests, and equivalence tests with bounds of ±2% of the control mean. The `analysis` blocks of the deposited JSON files use the population SD for Cohen's d, so those values differ from the reported ones in the second decimal place. The two analyses added in v1.1.0 have their own folders, plans, and READMEs (`selection_strength_check/`, `knowledge_limit_check/`); their `analyze.py` scripts print Tables S5 and S6.
 
 ## Rerun Simulation 1
 
@@ -93,15 +103,16 @@ The deposited `Data_S4_Alternative_Models.csv` used 100 replicates per condition
 
 ## Determinism and computing time
 
-Simulations 1 to 3, the sensitivity sweep, and the gradual-ramp analysis use master seed 42 (the alternative-model analysis uses model-name-derived seeds; see above). Replicate-specific seeds are recorded in the summary files. Parallel execution can change completion order but not the deterministic result assigned to a recorded replicate seed. Full regeneration is computationally intensive; checking the deposited outputs and regenerating figures is substantially faster.
+Simulations 1 to 3, the sensitivity sweep, and the gradual-ramp analysis use master seed 42 (the alternative-model analysis uses model-name-derived seeds; see above). Replicate-specific seeds are recorded in the summary files of Simulations 1 to 3. In the sensitivity sweep, the 20 seeds of a cell are drawn from a generator seeded with the master seed plus the index of the cell's first run, and the control and treatment runs of a replicate share a seed, so the two runs are identical until care is introduced; cell-level results are deposited (`Data_S2_Sensitivity.csv`), and replicate-level results of the sweep and of the alternative-model analysis are not. The quick heatmap that `childhood_first_simulation.py --sensitivity` writes after a sweep needs seaborn, which is not in `requirements.txt`; that step is skipped if seaborn is absent. Parallel execution can change completion order but not the deterministic result assigned to a recorded replicate seed. Full regeneration is computationally intensive; checking the deposited outputs and regenerating figures is substantially faster.
 
-## Versioned public release
+## Reruns checked for release v1.1.1
 
-For a versioned public release:
+Single replicates were rerun with Python 3.12 and the versions pinned in `requirements.txt`, using the deposited code and the recorded seeds: replicates 1 and 57 of Simulation 1, replicate 1 of Simulations 2 and 3 and of the gradual-ramp analysis (control and treatment in each case), 2 runs of each analysis added in v1.1.0, and all 40 runs of one cell of the sensitivity sweep (r = 0.30, e = 1.8). Every rerun reproduced the deposited endpoints, and the deposited trajectories where these exist, to floating-point rounding (relative differences below 1e-12).
 
-1. confirm that https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion contains the corrected root-layout files;
-2. commit the files and tag the version associated with the current manuscript as `v1.0.0`;
-3. create a GitHub release from that tag;
-4. connect the repository to Zenodo and archive the release;
-5. add the GitHub release URL, full commit identifier, and Zenodo DOI to the manuscript’s Data Availability Statement; and
-6. retain the immutable repository ZIP as a reviewer-accessible backup.
+## Releases
+
+- `v1.0.0`: snapshot associated with the original submission (Zenodo, https://doi.org/10.5281/zenodo.22694519).
+- `v1.1.0`: adds the selection-strength and knowledge-limit analyses and the model-diagram script (Zenodo, https://doi.org/10.5281/zenodo.24408976).
+- `v1.1.1`: adds `code/reported_statistics.py` and `code/generate_supplementary_figures.py`, redirects two figure scripts to `figures/generated/`, corrects the printed summary of `code/equilibrium_analysis.py`, and updates the documentation. Simulation code, data, and results are unchanged.
+
+All versions are archived at Zenodo under https://doi.org/10.5281/zenodo.22694518.
