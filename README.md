@@ -43,10 +43,20 @@ python code/generate_figures.py --data-dir . --output-dir figures/generated
 python code/visualize_alternative_models.py \
   --input Data_S4_Alternative_Models.csv \
   --output figures/alternative_models
+python code/generate_supplementary_figures.py --data-dir . --output-dir figures/generated
+python code/make_figure1_model_diagram.py
 python code/equilibrium_analysis.py
 ```
 
-The first command regenerates Figures 1 and 2; the second regenerates Figure 3, Figure 4, and Figure 3—figure supplement 1; the third regenerates Figure 1—figure supplement 4. Figure 1—figure supplements 1, 2, 3, and 5 are produced by `childhood_first_simulation.py` as described in `docs/REPRODUCIBILITY.md`.
+The first command regenerates Figures 1 and 2; the second regenerates Figure 3, Figure 4, and Figure 3—figure supplement 1; the third regenerates Figure 1—figure supplement 4. The fourth (added in v1.1.1) redraws Figure 1—figure supplements 1, 2, 3, and 5 from the deposited data, and the fifth draws the model diagram. The last prints auxiliary convergence diagnostics that are not reported in the article. Generated figures are written to `figures/`, which is not tracked; fonts and spacing can differ slightly from the published images. The table under "Figure and table numbering in the article" maps these names to the figure numbers of the revised manuscript.
+
+## Recompute the reported statistics
+
+```bash
+python code/reported_statistics.py
+```
+
+This script (added in v1.1.1) reads only deposited files and prints, in the order of the article, the statistics reported in the text, in Tables 2 to 4, and in the Supporting Information, including those that no other script prints (for example the equivalence test and confidence intervals of Simulation 1, the counts for the sensitivity sweep, and the net fitness and survival evaluated at the replicate means). Tables S5 and S6 are printed by the two `analyze.py` scripts described below.
 
 ## Full simulation regeneration
 
@@ -73,6 +83,8 @@ python selection_strength_check/make_figure_s7.py
 python knowledge_limit_check/analyze.py
 ```
 
+`make_figure_s7.py` writes `figures/generated/Figure_S7.png`; the image used in the article is `selection_strength_check/Figure_S7.png`.
+
 ## Figure and table numbering in the article
 
 Script comments and docstrings keep the figure names of an earlier manuscript version. They correspond to the revised manuscript as follows.
@@ -84,7 +96,7 @@ Script comments and docstrings keep the figure names of an earlier manuscript ve
 | Figure 2 | Figure 3 |
 | Figure 3 | Figure 4 |
 | Figure 4 | Figure 5 |
-| Figure 1-figure supplements 1 to 5 | Figures S1 to S5 |
+| Figure 1-figure supplements 1 to 5 (`code/generate_supplementary_figures.py` for 1, 2, 3, and 5; `code/visualize_alternative_models.py` for 4) | Figures S1 to S5 |
 | Figure 3-figure supplement 1 | Figure S6 |
 | (`selection_strength_check/make_figure_s7.py`) | Figure S7 |
 | (`selection_strength_check/table_S5.csv`) | Table S5 |
@@ -98,6 +110,17 @@ Script comments and docstrings keep the figure names of an earlier manuscript ve
 | Simulation 2 | With an imposed care-gated ceiling lift, mean treatment brain size increased by approximately 34% relative to its Simulation 1 endpoint. |
 | Simulation 3 | Cooperative-care and care-independent energetic conditions reached similar brain sizes but differed in childhood duration. The cooperative-care trajectories are numerically identical to those of Simulation 2 because the raised ceiling never binds. |
 
+## Changes in v1.1.1
+
+- Added `code/reported_statistics.py`, which recomputes the reported statistics from the deposited data, and `code/generate_supplementary_figures.py`, which redraws Figures S1, S2, S3, and S5 from the deposited data. In v1.1.0 no script produced these four figures.
+- `selection_strength_check/make_figure_s7.py` and `code/make_figure1_model_diagram.py` now write to `figures/generated/`. In v1.1.0 the first of these overwrote the deposited `Figure_S7.png`, after which `verify_repository.py` reported a checksum mismatch.
+- The docstring and the printed summary of `code/equilibrium_analysis.py` were corrected. They stated that populations had reached equilibrium and converted generations to years, which neither the script's own output nor the article supports (Supporting Information, text S1(c)). The statistics that the script computes are unchanged.
+- The documentation was updated.
+
+No simulation code and no data or result file was changed. The simulation scripts in `code/`, the patched simulation files of the two added analyses, and all `Data_S*`, trajectory, and result files are byte-identical to v1.1.0 and, where they existed, to v1.0.0.
+
+Comments and docstrings in the simulation scripts date from the original submission. Where they state that an accelerating (convex) social return is required for brain size to be maintained under care, they are superseded by the selection-strength analysis (`selection_strength_check/`) and by the article.
+
 ## Origin of the code
 
 The simulation code was adapted in Python from the C++ code published with the Cultural Brain Hypothesis model (Muthukrishna M, Doebeli M, Chudek M, Henrich J. The Cultural Brain Hypothesis: how culture drives brain expansion, sociality, and life history. PLoS Comput Biol. 2018;14:e1006504; S1 Code; https://doi.org/10.1371/journal.pcbi.1006504), which is distributed under the Creative Commons Attribution License. Claude Code (Anthropic) was used to make this adaptation and to write the simulation and analysis code to the author's specifications; the author verified the code and its output.
@@ -110,7 +133,7 @@ The manipulations identify causal consequences within the specified fitness func
 
 ## Data availability and preservation
 
-All data required to reproduce the manuscript’s statistics and figures are included here. The public repository is https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion. Version `v1.1.0` identifies the repository snapshot associated with the revised manuscript; it adds the two analyses made in revision and the model-diagram script to `v1.0.0`, the snapshot associated with the original submission (Zenodo, https://doi.org/10.5281/zenodo.22694519). No file of `v1.0.0` other than `README.md`, `CITATION.cff`, and `checksums/SHA256SUMS` was changed. All versions are archived at Zenodo under https://doi.org/10.5281/zenodo.22694518.
+All data required to reproduce the manuscript’s statistics and figures are included here. The public repository is https://github.com/tg3ny/cooperative_care_prolonged_development_brain_expansion. Version `v1.1.1` identifies the repository snapshot associated with the revised manuscript. `v1.0.0` is the snapshot associated with the original submission (Zenodo, https://doi.org/10.5281/zenodo.22694519); `v1.1.0` added the two analyses made in revision and the model-diagram script (Zenodo, https://doi.org/10.5281/zenodo.24408976); `v1.1.1` makes the changes listed under "Changes in v1.1.1". All versions are archived at Zenodo under https://doi.org/10.5281/zenodo.22694518.
 
 ## Contact
 
