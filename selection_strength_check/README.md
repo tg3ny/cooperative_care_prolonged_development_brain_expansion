@@ -61,7 +61,8 @@ of about 7.3 under the saturating form.
 
 `PLAN.md` plan, predictions, amendment · `patch.diff`, `make_patched.py`, `sim_patched.py` code ·
 `worker.py`, `tasks_*.jsonl` run lists · `out_*.jsonl` results · `analyze.py` → `table_S5.csv`,
-`replicate_results.csv` · `make_figure_s7.py` → `Figure_S7.png` · `attempt1_*` the discarded first attempt.
+`replicate_results.csv` · `Figure_S7.png` the image used in the article · `make_figure_s7.py` redraws it as
+`figures/generated/Figure_S7.png` · `attempt1_*` the discarded first attempt.
 
 ## To rerun
 
@@ -75,4 +76,5 @@ python selection_strength_check/make_figure_s7.py
 
 `worker.py <tasks> <output> <worker index> <number of workers>` skips finished tasks, so several workers can
 share one task list. One run takes about 50 seconds. Run with Python 3.13, NumPy 2.5.3, SciPy 1.18.1,
-pandas 3.0.5, and Matplotlib 3.11.2.
+pandas 3.0.5, and Matplotlib 3.11.2; single runs repeated with Python 3.12 and the versions pinned in
+`requirements.txt` gave the same results to floating-point rounding.
