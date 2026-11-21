@@ -58,5 +58,6 @@ txt(74.3, y0 - 1.0, 'Ceiling raised under care\n(Simulation 2) or also\nwithout 
 arrow((64.9, y0 + h0), (64.9, Y2 + 1.2), color=BLUE, ls=(0, (4, 2.5)), lw=1.2, ms=10)
 arrow((86.4, y0 + h0), (86.4, Y2 + 1.2), color=VERM, ls=(0, (4, 2.5)), lw=1.2, ms=10)
 import os, sys
-out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'Figure_1_model_diagram.png')
+out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'figures', 'generated', 'Figure_1_model_diagram.png')
+os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
 fig.savefig(out, dpi=300, facecolor='white'); print('saved', out)

@@ -40,4 +40,5 @@ axes[0, 0].annotate('care and added\nmortality begin', (10, 13.2), xytext=(5, 0)
 h, l = axes[0, 0].get_legend_handles_labels()
 axes[1, 2].legend(h[::-1], l[::-1], loc='lower right', frameon=False, fontsize=9, handlelength=1.8)
 fig.subplots_adjust(left=0.075, right=0.985, top=0.93, bottom=0.095, wspace=0.10, hspace=0.20)
-fig.savefig(os.path.join(HERE, 'Figure_S7.png'), dpi=300, facecolor='white'); print('saved S7')
+OUT = os.path.join(os.path.dirname(HERE), 'figures', 'generated'); os.makedirs(OUT, exist_ok=True)      # the deposited Figure_S7.png in this folder is left untouched
+fig.savefig(os.path.join(OUT, 'Figure_S7.png'), dpi=300, facecolor='white'); print('saved', os.path.join(OUT, 'Figure_S7.png'))

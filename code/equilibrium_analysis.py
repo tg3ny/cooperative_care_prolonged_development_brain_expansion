@@ -1,12 +1,14 @@
 """
-Auxiliary equilibrium diagnostic script.
+Auxiliary convergence diagnostic script.
 
-Supports the convergence diagnostics summarized in Appendix 1 (note on time scale and convergence); output: Data_S5_Equilibrium_Statistics.csv.
-Not a primary source of manuscript headline statistics.
+Reports the dispersion of replicate means near the end of each phase of Simulation 1 and the change in the
+mean trajectories over the final 2,000 generations; output: Data_S5_Equilibrium_Statistics.csv.
+Not a source of the statistics reported in the article.
 
-Verifies that trait trajectories have converged to equilibrium by the
-end of each simulation phase, supporting the validity of endpoint
-comparisons reported in the main text.
+The script does not establish that populations are at equilibrium. As the Supporting Information states
+(text S1(c)), trajectories are still changing slowly at the end of each phase, endpoint values characterize a
+fixed computational horizon, and generations are computational iterations, not a calibrated chronology.
+The printed summary was corrected accordingly in release v1.1.1; the computed statistics are unchanged.
 
 Note on internal naming: variable names use 'epoch' for backward
 compatibility with data files. The manuscript uses Phase 1 / Phase 2.
@@ -153,7 +155,7 @@ def main():
     print("PART 1: EQUILIBRIUM AT EPOCH BOUNDARIES")
     print("=" * 70)
     print("\nAnalyzing final 500 generations of each epoch...")
-    print("(Coefficient of Variation < 5% indicates quasi-equilibrium)\n")
+    print("(Coefficient of variation of replicate means; larger values indicate greater dispersion among replicates)\n")
     
     for epoch_name, bounds in phases.items():
         print(f"\n{epoch_name}")
@@ -177,7 +179,7 @@ def main():
     print("PART 2: RATE OF CHANGE IN FINAL GENERATIONS")
     print("=" * 70)
     print("\nMeasuring trait change over final 2,000 generations...")
-    print("(Low rate of change indicates near-equilibrium dynamics)\n")
+    print("(Change in the mean trajectory; a nonzero change means that the trait is still moving at the horizon)\n")
     
     for trait, trait_name in [('L_mean', 'Childhood Duration (L)'), 
                                ('B_mean', 'Brain Size (B)')]:
@@ -219,49 +221,15 @@ def main():
         print(f"\n  Change Phase 1 → Phase 2: {((vals[1]-vals[0])/vals[0])*100:+.1f}%")
     
     print("\n" + "=" * 70)
-    print("PART 4: BIOLOGICAL TIMEFRAME")
-    print("=" * 70)
-    
-    generations = 100000
-    years_per_gen_low = 25
-    years_per_gen_high = 30
-    
-    years_low = generations * years_per_gen_low
-    years_high = generations * years_per_gen_high
-    
-    print(f"\n  Total generations: {generations:,}")
-    print(f"  Assuming {years_per_gen_low}-{years_per_gen_high} years per generation:")
-    print(f"    Simulated timespan: {years_low/1e6:.1f} - {years_high/1e6:.1f} million years")
-    print(f"\n  This corresponds approximately to:")
-    print(f"    - Early Australopithecus (~3.5 Ma) through")
-    print(f"    - Late Homo erectus (~0.5 Ma)")
-    print(f"\n  Compare to Muthukrishna et al. (2018) CBH simulation:")
-    print(f"    - 200,000 generations = 5-6 million years")
-    print(f"    - Models full hominin-chimpanzee divergence")
-    
-    print("\n" + "=" * 70)
     print("SUMMARY")
     print("=" * 70)
     print("""
-The analysis confirms that:
-
-1. EQUILIBRIUM REACHED: Coefficient of variation < 5% at all epoch
-   boundaries indicates populations reach quasi-equilibrium within
-   each epoch.
-
-2. LOW RATE OF CHANGE: Trait values change by < 5% over the final
-   2,000 generations, indicating near-equilibrium dynamics.
-
-3. APPROPRIATE TIMEFRAME: 100,000 generations represents ~2.5-3 Ma,
-   appropriate for testing the Childhood-First hypothesis which
-   focuses on developmental changes from Australopithecus through
-   early Homo.
-
-4. SENSITIVITY: The model produces stable, interpretable results
-   without requiring extension to 200,000 generations.
-
-These findings justify the use of 100,000 generations as cited in
-the Supplementary Materials.
+These diagnostics describe the state of Simulation 1 at fixed computational
+horizons. They do not show that populations are at equilibrium: replicate
+means remain dispersed, and mean childhood duration in the treatment group
+is still increasing at generation 100,000. Endpoint values should therefore
+be read as horizon-dependent (Supporting Information, text S1(c)).
+Generations are computational iterations and are not converted to years.
 """)
     
     # Save summary statistics to CSV
