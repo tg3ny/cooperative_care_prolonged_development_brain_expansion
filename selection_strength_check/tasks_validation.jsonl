@@ -1,0 +1,4 @@
+{"task_id": "val_control_1", "stage": "validation", "form": "superlinear", "offset": 0.0, "group": "control", "rep": 1, "seed": 89250953}
+{"task_id": "val_control_2", "stage": "validation", "form": "superlinear", "offset": 0.0, "group": "control", "rep": 2, "seed": 773956048}
+{"task_id": "val_treatment_1", "stage": "validation", "form": "superlinear", "offset": 0.0, "group": "treatment", "rep": 1, "seed": 705165378}
+{"task_id": "val_treatment_2", "stage": "validation", "form": "superlinear", "offset": 0.0, "group": "treatment", "rep": 2, "seed": 277121625}

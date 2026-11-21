@@ -1,0 +1,28 @@
+193a194,196
+>     baseline_offset: float = 0.0     # CHECK: constant subtracted from net fitness (baseline mortality, Phase 2 on)
+>     social_form: str = 'superlinear' # CHECK: 'superlinear' | 'linear' | 'saturating'
+>     saturation_K: float = 5.0        # CHECK: half-saturation constant, as in alternative_models_analysis.py
+228a232
+>         self.active_offset = 0.0         # CHECK: no baseline mortality during the burn-in
+316c320,327
+<         social_benefit = (self.Sub_care * p.social_rate * np.power(L_normalized, p.social_exponent) * p.L_max)
+---
+>         if p.social_form == 'superlinear':
+>             social_benefit = (self.Sub_care * p.social_rate * np.power(L_normalized, p.social_exponent) * p.L_max)
+>         elif p.social_form == 'linear':
+>             social_benefit = self.Sub_care * p.social_rate * self.L
+>         elif p.social_form == 'saturating':
+>             social_benefit = self.Sub_care * p.social_rate * p.L_max * self.L / (self.L + p.saturation_K)
+>         else:
+>             raise ValueError(p.social_form)
+321c332
+<         net_fitness = total_benefit - total_cost
+---
+>         net_fitness = total_benefit - total_cost - self.active_offset
+421a433
+>     pop.active_offset = params.baseline_offset   # CHECK: applies from Phase 2 on, in control and treatment alike
+446a459,462
+>         'final_surv_mean': float(np.mean(pop.prev_fitness)),
+>         'final_frac_at_cap': float(np.mean(pop.prev_fitness >= 0.999)),
+>         'final_B_sd': stats['B_std'],
+>         'final_L_sd': stats['L_std'],

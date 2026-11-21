@@ -1,0 +1,6 @@
+196a197
+>     knowledge_cap: float = 0.6       # CHECK: coefficient of the storage rule K <= knowledge_cap * B
+276c277
+<         self.K = np.minimum(K_total, self.B * 0.6)
+---
+>         self.K = np.minimum(K_total, self.B * p.knowledge_cap)

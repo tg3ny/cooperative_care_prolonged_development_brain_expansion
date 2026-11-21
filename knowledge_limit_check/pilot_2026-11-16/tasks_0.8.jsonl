@@ -1,0 +1,10 @@
+{"task_id": "A_control_1", "arm": "A", "form": "superlinear", "offset": 7.8, "group": "control", "rep": 1, "seed": 89250953}
+{"task_id": "A_saturating_1", "arm": "A", "form": "saturating", "offset": 7.8, "group": "treatment", "rep": 1, "seed": 705165378}
+{"task_id": "A_control_2", "arm": "A", "form": "superlinear", "offset": 7.8, "group": "control", "rep": 2, "seed": 773956048}
+{"task_id": "A_saturating_2", "arm": "A", "form": "saturating", "offset": 7.8, "group": "treatment", "rep": 2, "seed": 277121625}
+{"task_id": "A_control_3", "arm": "A", "form": "superlinear", "offset": 7.8, "group": "control", "rep": 3, "seed": 654571518}
+{"task_id": "A_saturating_3", "arm": "A", "form": "saturating", "offset": 7.8, "group": "treatment", "rep": 3, "seed": 780729030}
+{"task_id": "A_control_4", "arm": "A", "form": "superlinear", "offset": 7.8, "group": "control", "rep": 4, "seed": 438878439}
+{"task_id": "A_saturating_4", "arm": "A", "form": "saturating", "offset": 7.8, "group": "treatment", "rep": 4, "seed": 555646960}
+{"task_id": "A_control_5", "arm": "A", "form": "superlinear", "offset": 7.8, "group": "control", "rep": 5, "seed": 433015235}
+{"task_id": "A_saturating_5", "arm": "A", "form": "saturating", "offset": 7.8, "group": "treatment", "rep": 5, "seed": 458915775}

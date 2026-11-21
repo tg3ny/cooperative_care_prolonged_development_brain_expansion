@@ -1,0 +1,4 @@
+{"task_id": "B_control_1", "arm": "B", "form": "superlinear", "offset": 0.0, "group": "control", "rep": 1, "seed": 89250953}
+{"task_id": "B_superlinear_1", "arm": "B", "form": "superlinear", "offset": 0.0, "group": "treatment", "rep": 1, "seed": 705165378}
+{"task_id": "A_control_1", "arm": "A", "form": "superlinear", "offset": 3.5, "group": "control", "rep": 1, "seed": 89250953}
+{"task_id": "A_saturating_1", "arm": "A", "form": "saturating", "offset": 3.5, "group": "treatment", "rep": 1, "seed": 705165378}
